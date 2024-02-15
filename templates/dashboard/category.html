@@ -1,0 +1,31 @@
+{% extends "dashboard/base.html "%}
+
+{% load static %}
+
+{% block content %}
+        <h2 class="mb-4">Category</h2>
+        <a href="{%url 'addCategory'%}"><button type="button" class="btn btn-lg btn-primary">Add</button></a>
+       
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {%for category in categories%}
+                <tr>
+                    <td scope="row">{{forloop.counter}}</td>
+                    <td>{{category.name}}</td>
+                    <td>
+                        <a href="category/{{category.id}}/delete" class = "btn btn-danger">Delete<a> 
+                        <a href="category/{{category.id}}/edit" class = "btn btn-primary">Edit<a> 
+              
+                      </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+{% endblock %}

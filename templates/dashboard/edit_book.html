@@ -1,0 +1,29 @@
+{% extends "dashboard/base.html "%}
+
+{% load static %}
+
+{% block content %}
+<h2 class="mb-4">Edit Category</h2>
+<form method = "POST" action = "">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Title</label>
+      <input type="text" name = "name" id ="name" class="form-control" id="exampleInputEmail1"
+       aria-describedby="emailHelp" value = {{book.name}}>
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Category</label>
+        <select name = "category" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+            {% for category in  categories%}
+                <option value="{{category.id}}" {% if category.id == book.category.id %} selected {%endif%}>
+                    {{category.name}}
+                </option>
+            {% endfor%}
+          </select>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}

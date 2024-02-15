@@ -1,0 +1,33 @@
+{% extends "dashboard/base.html "%}
+
+{% load static %}
+
+{% block content %}
+        <h2 class="mb-4">Books</h2>
+        <a href="{%url 'addBook'%}"><button type="button" class="btn btn-lg btn-primary">Add</button></a>
+       
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Category</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {%for book in books%}
+                <tr>
+                    <td scope="row">{{forloop.counter}}</td>
+                    <td>{{book.name}}</td>
+                    <td>{{book.category}}</td>
+                    <td>
+                        <a href="book/{{book.id}}/delete" class = "btn btn-danger">Delete<a> 
+                        <a href="book/{{book.id}}/edit" class = "btn btn-primary">Edit<a> 
+              
+                      </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+{% endblock %}
